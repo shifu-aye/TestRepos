@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 namespace WpfClient
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ServiceReference1.IServiceCallback
     {
         bool a = false;
         bool enabled = false;
@@ -161,6 +161,11 @@ namespace WpfClient
                     client.CoordMouseM(convertedCoord);
                 }
             }
+        }
+
+        public void MessageCallBack(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

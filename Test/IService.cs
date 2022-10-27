@@ -8,7 +8,7 @@ using System.Text;
 namespace Test
 {
     // ПРИМЕЧАНИЕ. Можно использовать команду "Переименовать" в меню "Рефакторинг", чтобы изменить имя интерфейса "IService" в коде и файле конфигурации.
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IServerCallBack))]
     public interface IService
     {
         [OperationContract]
@@ -34,5 +34,11 @@ namespace Test
 
         [OperationContract]
         void SendWhatsApp(int counter);
+    }
+    
+    public interface IServerCallBack
+    {
+        [OperationContract(IsOneWay = true)]
+        void MessageCallBack(string message);
     }
 }

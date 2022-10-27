@@ -18,11 +18,16 @@ namespace WpfClient
     /// <summary>
     /// Логика взаимодействия для AuthWindow.xaml
     /// </summary>
-    public partial class AuthWindow : Window
+    public partial class AuthWindow : Window, ServiceReference1.IServiceCallback
     {
         public AuthWindow()
         {
             InitializeComponent();
+        }
+
+        public void MessageCallBack(string message)
+        {
+            throw new NotImplementedException();
         }
 
         private void authBtn_Click(object sender, RoutedEventArgs e)

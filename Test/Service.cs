@@ -74,7 +74,7 @@ namespace Test
             //{
                 //emailAdress = db.UsersTable.Find(id).EmailAdress;
                 MailAddress from = new MailAddress("test4123mail@gmail.com", "Алексей");
-                MailAddress to = new MailAddress("");
+                MailAddress to = new MailAddress("juliakarnauh1975@gmail.com");
                 MailMessage m = new MailMessage(from, to);
                 m.Subject = "Количество записей";
                 m.Body = $"<h2>Количество записей: {counter}</h2>";
