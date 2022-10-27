@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_Authentication_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="IService_Authentication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordR_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordR" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordR_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordRResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordL_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordL" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordU_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordU" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordU_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordUResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordD_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordD" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseL_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseL" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseR_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseR" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseR_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseRResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseM_InputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseM" />
+  </wsdl:message>
+  <wsdl:message name="IService_CoordMouseM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CoordMouseMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmail" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendWhatsApp_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendWhatsApp" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendWhatsApp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendWhatsAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MessageCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MessageCallBack" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="Authentication">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Authentication" message="tns:IService_Authentication_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthenticationResponse" message="tns:IService_Authentication_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordR">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordR" message="tns:IService_CoordR_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordRResponse" message="tns:IService_CoordR_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordL" message="tns:IService_CoordL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordLResponse" message="tns:IService_CoordL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordU">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordU" message="tns:IService_CoordU_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordUResponse" message="tns:IService_CoordU_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordD">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordD" message="tns:IService_CoordD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordDResponse" message="tns:IService_CoordD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordMouseL" message="tns:IService_CoordMouseL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordMouseLResponse" message="tns:IService_CoordMouseL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseR">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordMouseR" message="tns:IService_CoordMouseR_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordMouseRResponse" message="tns:IService_CoordMouseR_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordMouseM" message="tns:IService_CoordMouseM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CoordMouseMResponse" message="tns:IService_CoordMouseM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendEmail" message="tns:IService_SendEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendEmailResponse" message="tns:IService_SendEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWhatsApp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendWhatsApp" message="tns:IService_SendWhatsApp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendWhatsAppResponse" message="tns:IService_SendWhatsApp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageCallBack" message="tns:IService_MessageCallBack_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Authentication">
+      <soap12:operation soapAction="http://tempuri.org/IService/Authentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordR">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordL">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordU">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordD">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseL">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordMouseL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseR">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordMouseR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoordMouseM">
+      <soap12:operation soapAction="http://tempuri.org/IService/CoordMouseM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWhatsApp">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendWhatsApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IService/MessageCallBack" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
+      <soap12:address location="net.tcp://localhost:8302/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8302/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DESKTOP-N5N34TL\alesh</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
