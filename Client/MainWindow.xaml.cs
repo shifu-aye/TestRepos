@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Windows;
 using System.Windows.Input;
+using ServiceReference1;
+using TestModel.Context;
+using Test;
 
-namespace WpfClient
+namespace Client
 {
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
     public partial class MainWindow : Window, ServiceReference1.IServiceCallback
     {
         bool _a = false;
@@ -14,18 +21,20 @@ namespace WpfClient
         int _sizeDown;
         int _counter = 0;
         int _counter50 = 0;
+        ApplicationContext _db = new();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            _db.Database.EnsureCreated();
+
+            _db.Users.Load();
+
+            DataContext = _db.Users.Local.ToObservableCollection();
         }
-        
-        /// <summary>
-        /// Перемещение мышки
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mainWin_MouseMove(object sender, MouseEventArgs e)
+
+        private void MainWindow_OnMouseMove(object sender, MouseEventArgs e)
         {
             var client = new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
             if (_enabled == true)
@@ -33,7 +42,7 @@ namespace WpfClient
                 var windowPosition = Mouse.GetPosition(this);
                 var screenPosition = this.PointToScreen(windowPosition);
                 string convertedCoord = Convert.ToString(screenPosition);
- 
+
                 this.Title = String.Format("{0} --- {1}", windowPosition, screenPosition);
 
                 if (_a == true)
@@ -43,65 +52,49 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вправо на 10px {screenPosition}");
-                        client.CoordR(convertedCoord);
+                        client.CoordRAsync(convertedCoord);
                         _a = false;
                     }
+
                     if (Convert.ToInt32(screenPosition.Y) == _sizeDown)
                     {
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вниз на 10px {screenPosition}");
-                        client.CoordD(convertedCoord);
+                        client.CoordDAsync(convertedCoord);
                         _a = false;
                     }
+
                     if (Convert.ToInt32(screenPosition.X) == _sizeLeft)
                     {
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг влево на 10px {screenPosition}");
-                        client.CoordL(convertedCoord);
+                        client.CoordLAsync(convertedCoord);
                         _a = false;
                     }
+
                     if (Convert.ToInt32(screenPosition.Y) == _sizeUp)
                     {
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вверх на 10px {screenPosition}");
-                        client.CoordU(convertedCoord);
+                        client.CoordUAsync(convertedCoord);
                         _a = false;
                     }
-                }  
-            }
-            counterTB.Text = _counter.ToString();
-            if ((_counter50 == 50))
-            {
-                client.SendEmail(_counter);
-                client.SendWhatsApp(_counter);
-                _counter50 = 1;
-                _counter++;
-            }
-        }
 
-        private void recordBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if(_enabled != true)
-            {
-                _enabled = true;
-                
-                recordBtn.Content = "Остановить запись";
-            }
-            else
-            {
-                _enabled = false;
-                recordBtn.Content = "Запустить запись";
+                    counterTB.Text = _counter.ToString();
+                    if ((_counter50 == 50))
+                    {
+                        client.SendEmailAsync(_counter);
+                        client.SendWhatsAppAsync(_counter);
+                        _counter50 = 1;
+                        _counter++;
+                    }
+                }
             }
         }
-        /// <summary>
-        /// Нажатие мыши
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mainWin_MouseDown(object sender, MouseButtonEventArgs e)
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             var client = new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
             var windowPosition = Mouse.GetPosition(this);
@@ -120,7 +113,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Левая кнопка нажата на {screenPosition}");
-                    client.CoordMouseL(convertedCoord);
+                    client.CoordMouseLAsync(convertedCoord);
                 }
                 else if (e.RightButton == MouseButtonState.Pressed)
                 {
@@ -132,7 +125,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Правая кнопка нажата на {screenPosition}");
-                    client.CoordMouseR(convertedCoord);
+                    client.CoordMouseRAsync(convertedCoord);
                 }
                 else if (e.MiddleButton == MouseButtonState.Pressed)
                 {
@@ -144,14 +137,29 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Средняя кнопка нажата на {screenPosition}");
-                    client.CoordMouseM(convertedCoord);
+                    client.CoordMouseMAsync(convertedCoord);
                 }
+            }
+        }
+
+        private void RecordBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_enabled != true)
+            {
+                _enabled = true;
+
+                recordBtn.Content = "Остановить запись";
+            }
+            else
+            {
+                _enabled = false;
+                recordBtn.Content = "Запустить запись";
             }
         }
 
         public void MessageCallBack(string message)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

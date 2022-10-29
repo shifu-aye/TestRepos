@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHOST", "ConsoleHOST\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{05975373-2796-4710-B2E3-41B7948D580E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestModel", "TestModel\TestModel.csproj", "{6F5F90B3-80CB-4B5B-BD0E-2820362F4326}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{A6097A24-2435-45AA-B3FD-43F275A2E104}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{05975373-2796-4710-B2E3-41B7948D580E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05975373-2796-4710-B2E3-41B7948D580E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05975373-2796-4710-B2E3-41B7948D580E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F5F90B3-80CB-4B5B-BD0E-2820362F4326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F5F90B3-80CB-4B5B-BD0E-2820362F4326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F5F90B3-80CB-4B5B-BD0E-2820362F4326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F5F90B3-80CB-4B5B-BD0E-2820362F4326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6097A24-2435-45AA-B3FD-43F275A2E104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6097A24-2435-45AA-B3FD-43F275A2E104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6097A24-2435-45AA-B3FD-43F275A2E104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6097A24-2435-45AA-B3FD-43F275A2E104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
