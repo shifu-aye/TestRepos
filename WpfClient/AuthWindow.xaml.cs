@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+using WpfClient.ServiceReference1;
 
 namespace WpfClient
 {
@@ -20,19 +10,18 @@ namespace WpfClient
     /// </summary>
     public partial class AuthWindow : Window, ServiceReference1.IServiceCallback
     {
+        bool isConnected = false;
+        private ServiceReference1.ServiceClient client;
         public AuthWindow()
         {
             InitializeComponent();
-        }
+            this.client = ConnectClient();
 
-        public void MessageCallBack(string message)
-        {
-            throw new NotImplementedException();
+            client.Authentication(new WpfClient.ServiceReference1.AuthenticationRequest("login", "password"));
         }
-
+        
         private void authBtn_Click(object sender, RoutedEventArgs e)
         {
-            var client = new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
             string login = logTB.Text.Trim();
             string password = passwordPB.Password.Trim();
 
@@ -42,13 +31,29 @@ namespace WpfClient
             }
             else
             {
-                //client.Authentication(login, password);
+                client.Authentication(new WpfClient.ServiceReference1.AuthenticationRequest(login, password));
+
                 MessageBox.Show("Аутентификация прошла успешно!");
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Close();
             }
-            
+
+        }
+
+        private ServiceClient ConnectClient()
+        {
+            if(!isConnected)
+                return new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
+            else
+            {
+                return null;
+            }
+        }
+
+        public void MessageCallBack(MessageCallBack request)
+        {
+            MessageBox.Show(request.message);
         }
     }
 }

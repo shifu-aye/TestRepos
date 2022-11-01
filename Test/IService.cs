@@ -13,7 +13,6 @@ namespace Test
     {
         [OperationContract]
         void Authentication(string login, string password);
-
         [OperationContract]
         void CoordR(string screenPosition);
         [OperationContract]

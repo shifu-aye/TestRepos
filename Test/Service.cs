@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Mail;
 using System.Net;
 using System.ServiceModel;
+using Test.Data.Context;
+using Test.Data.Tables;
 
 namespace Test
 {
@@ -11,20 +14,20 @@ namespace Test
     {
         public void Authentication(string login, string password)
         {
-            //using (testDBEntities db = new testDBEntities())
-            //{
-            //    Console.WriteLine($"{DateTime.UtcNow}: Подключение к бд...");
-            //    UsersTable currentUser = null;
-            //    currentUser = db.UsersTable.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
-            //    if (currentUser.Role == "JustUser")
-            //    {
-            //        Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
-            //    }
-            //    else if (currentUser.Role == "Admin")
-            //    {
-            //        Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
-            //    }
-            //}
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Console.WriteLine($"{DateTime.UtcNow}: Подключение к бд...");
+                User currentUser = null;
+                currentUser = db.Users.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+                if (!currentUser.IsAdmin)
+                {
+                    Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
+                }
+                else
+                {
+                    Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
+                }
+            }
         }
 
         public void CoordD(string screenPosition)

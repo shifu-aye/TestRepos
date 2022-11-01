@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using WpfClient.ServiceReference1;
 
 namespace WpfClient
 {
@@ -43,7 +44,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вправо на 10px {screenPosition}");
-                        client.CoordR(convertedCoord);
+                        client.CoordR(new WpfClient.ServiceReference1.CoordRRequest(convertedCoord));
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.Y) == _sizeDown)
@@ -51,7 +52,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вниз на 10px {screenPosition}");
-                        client.CoordD(convertedCoord);
+                        client.CoordD(new WpfClient.ServiceReference1.CoordDRequest(convertedCoord));
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.X) == _sizeLeft)
@@ -59,7 +60,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг влево на 10px {screenPosition}");
-                        client.CoordL(convertedCoord);
+                        client.CoordL(new WpfClient.ServiceReference1.CoordLRequest(convertedCoord));
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.Y) == _sizeUp)
@@ -67,7 +68,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вверх на 10px {screenPosition}");
-                        client.CoordU(convertedCoord);
+                        client.CoordU(new WpfClient.ServiceReference1.CoordURequest(convertedCoord));
                         _a = false;
                     }
                 }  
@@ -75,8 +76,8 @@ namespace WpfClient
             counterTB.Text = _counter.ToString();
             if ((_counter50 == 50))
             {
-                client.SendEmail(_counter);
-                client.SendWhatsApp(_counter);
+                client.SendEmail(new WpfClient.ServiceReference1.SendEmailRequest(_counter));
+                client.SendWhatsApp(new WpfClient.ServiceReference1.SendWhatsAppRequest(_counter));
                 _counter50 = 1;
                 _counter++;
             }
@@ -120,7 +121,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Левая кнопка нажата на {screenPosition}");
-                    client.CoordMouseL(convertedCoord);
+                    client.CoordMouseL(new WpfClient.ServiceReference1.CoordMouseLRequest(convertedCoord));
                 }
                 else if (e.RightButton == MouseButtonState.Pressed)
                 {
@@ -132,7 +133,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Правая кнопка нажата на {screenPosition}");
-                    client.CoordMouseR(convertedCoord);
+                    client.CoordMouseR(new WpfClient.ServiceReference1.CoordMouseRRequest(convertedCoord));
                 }
                 else if (e.MiddleButton == MouseButtonState.Pressed)
                 {
@@ -144,12 +145,12 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Средняя кнопка нажата на {screenPosition}");
-                    client.CoordMouseM(convertedCoord);
+                    client.CoordMouseM(new WpfClient.ServiceReference1.CoordMouseMRequest(convertedCoord));
                 }
             }
         }
-
-        public void MessageCallBack(string message)
+        
+        public void MessageCallBack(MessageCallBack request)
         {
             throw new NotImplementedException();
         }

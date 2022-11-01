@@ -14,6 +14,7 @@ namespace ConsoleHOST
                 Console.WriteLine("Хост запущен!");
                 
                 Console.ReadLine();
+                Console.ReadKey();
             }
         }
     }
