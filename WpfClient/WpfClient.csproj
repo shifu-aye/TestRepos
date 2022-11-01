@@ -256,36 +256,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference1\Service.wsdl" />
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.AuthenticationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordDResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordLResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordMouseLResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordMouseMResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordMouseRResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordRResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.CoordUResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.SendEmailResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference1\WpfClient.ServiceReference1.SendWhatsAppResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

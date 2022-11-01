@@ -16,12 +16,12 @@ namespace WpfClient
         {
             InitializeComponent();
             this.client = ConnectClient();
-
-            client.Authentication(new WpfClient.ServiceReference1.AuthenticationRequest("login", "password"));
+            
         }
         
         private void authBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             string login = logTB.Text.Trim();
             string password = passwordPB.Password.Trim();
 
@@ -31,7 +31,7 @@ namespace WpfClient
             }
             else
             {
-                client.Authentication(new WpfClient.ServiceReference1.AuthenticationRequest(login, password));
+                //client.Authentication1(login, password);
 
                 MessageBox.Show("Аутентификация прошла успешно!");
                 MainWindow mainWindow = new MainWindow();
@@ -51,9 +51,9 @@ namespace WpfClient
             }
         }
 
-        public void MessageCallBack(MessageCallBack request)
+        public void MessageCallBack(string message)
         {
-            MessageBox.Show(request.message);
+            throw new NotImplementedException();
         }
     }
 }

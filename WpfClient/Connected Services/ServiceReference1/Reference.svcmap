@@ -7,7 +7,7 @@
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
     <GenerateInternalTypes>false</GenerateInternalTypes>
-    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings />
     <GenerateSerializableTypes>true</GenerateSerializableTypes>

@@ -35,11 +35,11 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IService_Authentication_InputMessage">
-    <wsdl:part name="parameters" element="tns:Authentication" />
+  <wsdl:message name="IService_Authentication1_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authentication1" />
   </wsdl:message>
-  <wsdl:message name="IService_Authentication_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AuthenticationResponse" />
+  <wsdl:message name="IService_Authentication1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Authentication1Response" />
   </wsdl:message>
   <wsdl:message name="IService_CoordR_InputMessage">
     <wsdl:part name="parameters" element="tns:CoordR" />
@@ -99,9 +99,9 @@
     <wsdl:part name="parameters" element="tns:MessageCallBack" />
   </wsdl:message>
   <wsdl:portType name="IService">
-    <wsdl:operation name="Authentication">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/Authentication" message="tns:IService_Authentication_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthenticationResponse" message="tns:IService_Authentication_OutputMessage" />
+    <wsdl:operation name="Authentication1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Authentication1" message="tns:IService_Authentication1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/Authentication1Response" message="tns:IService_Authentication1_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CoordR">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CoordR" message="tns:IService_CoordR_InputMessage" />
@@ -146,8 +146,8 @@
   <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
     <wsp:PolicyReference URI="#NetTcpBinding_IService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="Authentication">
-      <soap12:operation soapAction="http://tempuri.org/IService/Authentication" style="document" />
+    <wsdl:operation name="Authentication1">
+      <soap12:operation soapAction="http://tempuri.org/IService/Authentication1" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

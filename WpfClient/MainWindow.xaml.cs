@@ -44,7 +44,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вправо на 10px {screenPosition}");
-                        client.CoordR(new WpfClient.ServiceReference1.CoordRRequest(convertedCoord));
+                        client.CoordR(convertedCoord);
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.Y) == _sizeDown)
@@ -52,7 +52,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вниз на 10px {screenPosition}");
-                        client.CoordD(new WpfClient.ServiceReference1.CoordDRequest(convertedCoord));
+                        client.CoordD(convertedCoord);
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.X) == _sizeLeft)
@@ -60,7 +60,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг влево на 10px {screenPosition}");
-                        client.CoordL(new WpfClient.ServiceReference1.CoordLRequest(convertedCoord));
+                        client.CoordL(convertedCoord);
                         _a = false;
                     }
                     if (Convert.ToInt32(screenPosition.Y) == _sizeUp)
@@ -68,7 +68,7 @@ namespace WpfClient
                         _counter++;
                         _counter50++;
                         MessageBox.Show($"сдвиг вверх на 10px {screenPosition}");
-                        client.CoordU(new WpfClient.ServiceReference1.CoordURequest(convertedCoord));
+                        client.CoordU(convertedCoord);
                         _a = false;
                     }
                 }  
@@ -76,13 +76,18 @@ namespace WpfClient
             counterTB.Text = _counter.ToString();
             if ((_counter50 == 50))
             {
-                client.SendEmail(new WpfClient.ServiceReference1.SendEmailRequest(_counter));
-                client.SendWhatsApp(new WpfClient.ServiceReference1.SendWhatsAppRequest(_counter));
+                client.SendEmail(_counter);
+                client.SendWhatsApp(_counter);
                 _counter50 = 1;
                 _counter++;
             }
         }
 
+        /// <summary>
+        /// Запись в бд
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void recordBtn_Click(object sender, RoutedEventArgs e)
         {
             if(_enabled != true)
@@ -97,6 +102,7 @@ namespace WpfClient
                 recordBtn.Content = "Запустить запись";
             }
         }
+
         /// <summary>
         /// Нажатие мыши
         /// </summary>
@@ -121,7 +127,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Левая кнопка нажата на {screenPosition}");
-                    client.CoordMouseL(new WpfClient.ServiceReference1.CoordMouseLRequest(convertedCoord));
+                    client.CoordMouseL(convertedCoord);
                 }
                 else if (e.RightButton == MouseButtonState.Pressed)
                 {
@@ -133,7 +139,7 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Правая кнопка нажата на {screenPosition}");
-                    client.CoordMouseR(new WpfClient.ServiceReference1.CoordMouseRRequest(convertedCoord));
+                    client.CoordMouseR(convertedCoord);
                 }
                 else if (e.MiddleButton == MouseButtonState.Pressed)
                 {
@@ -145,12 +151,12 @@ namespace WpfClient
                     _sizeUp = Convert.ToInt32(screenPosition.Y) - 10;
                     _sizeDown = Convert.ToInt32(screenPosition.Y) + 10;
                     MessageBox.Show($"Средняя кнопка нажата на {screenPosition}");
-                    client.CoordMouseM(new WpfClient.ServiceReference1.CoordMouseMRequest(convertedCoord));
+                    client.CoordMouseM(convertedCoord);
                 }
             }
         }
         
-        public void MessageCallBack(MessageCallBack request)
+        public void MessageCallBack(string message)
         {
             throw new NotImplementedException();
         }

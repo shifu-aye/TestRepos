@@ -12,57 +12,58 @@ namespace Test
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        public void Authentication(string login, string password)
+        public void Authentication1(string login, string password)
         {
+            Console.WriteLine($"{DateTime.Now}: Подключение к бд");
             using (ApplicationContext db = new ApplicationContext())
             {
-                Console.WriteLine($"{DateTime.UtcNow}: Подключение к бд...");
+                Console.WriteLine($"{DateTime.Now}: Подключение к бд...");
                 User currentUser = null;
                 currentUser = db.Users.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
                 if (!currentUser.IsAdmin)
                 {
-                    Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
+                    Console.WriteLine($"{DateTime.Now}: Клиет вошел, как пользователь!");
                 }
                 else
                 {
-                    Console.WriteLine($"{DateTime.UtcNow}: Клиет вошел, как пользователь!");
+                    Console.WriteLine($"{DateTime.Now}: Клиет вошел, как пользователь!");
                 }
             }
         }
 
         public void CoordD(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Сдвиг вниз на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Сдвиг вниз на 10px {screenPosition}");
         }
 
         public void CoordL(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Сдвиг влево на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Сдвиг влево на 10px {screenPosition}");
         }
 
         public void CoordMouseL(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Левая кнопка мыши на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Левая кнопка мыши {screenPosition}");
         }
 
         public void CoordMouseM(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Средняя кнопка мыши на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Средняя кнопка мыши {screenPosition}");
         }
 
         public void CoordMouseR(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Правая кнопка мыши на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Правая кнопка мыши {screenPosition}");
         }
 
         public void CoordR(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Сдвиг вправо на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Сдвиг вправо на 10px {screenPosition}");
         }
 
         public void CoordU(string screenPosition)
         {
-            Console.WriteLine($"{DateTime.UtcNow}: Сдвиг наверх на 10px {screenPosition}");
+            Console.WriteLine($"{DateTime.Now}: Сдвиг наверх на 10px {screenPosition}");
         }
 
         public void SendEmail(int counter)
@@ -80,7 +81,7 @@ namespace Test
                 smtp.Credentials = new NetworkCredential("test4123mail@gmail.com", "qsseagcpmtmpgdju");
                 smtp.EnableSsl = true;
                 smtp.Send(m);
-                Console.WriteLine($"{DateTime.UtcNow}: Письмо на почту отправлено");
+                Console.WriteLine($"{DateTime.Now}: Письмо на почту отправлено");
             //}
             
         }
@@ -90,7 +91,7 @@ namespace Test
             string message = counter.ToString();
             string number = "+79393192557";
             System.Diagnostics.Process.Start("http://api.whatsapp.com/send?phone=" + number + "&text=" + message);
-            Console.WriteLine($"{DateTime.UtcNow}: Письмо в WhatsApp отправлено");
+            Console.WriteLine($"{DateTime.Now}: Письмо в WhatsApp отправлено");
         }
     }
 }

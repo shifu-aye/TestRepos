@@ -12,7 +12,7 @@ namespace Test
     public interface IService
     {
         [OperationContract]
-        void Authentication(string login, string password);
+        void Authentication1(string login, string password);
         [OperationContract]
         void CoordR(string screenPosition);
         [OperationContract]
