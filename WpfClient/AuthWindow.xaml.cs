@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using WpfClient.ServiceReference1;
 
 namespace WpfClient
@@ -12,27 +13,42 @@ namespace WpfClient
             InitializeComponent();
             this.client = ConnectClient();
         }
-        
+
         private void authBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            string login = logTB.Text.Trim();
-            string password = passwordPB.Password.Trim();
+            string login = "";
+            string password = "";
 
-            if (login == "" || password == "")
+            if (logTB != null && passwordPB != null)
             {
-                MessageBox.Show("Введите данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                login = logTB.Text.Trim();
+                password = passwordPB.Password.Trim();
             }
-            else
-            {
-                //client.Authentication1(login, password);
 
-                MessageBox.Show("Аутентификация прошла успешно!");
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                Close();
+            try
+            {
+                if (login != "" && password != "")
+                {
+                    client.Authentication1(login, password);
+
+                    MessageBox.Show("Аутентификация прошла успешно!");
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка!");
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.StackTrace);
+                logTB.Text = "";
+                passwordPB.Password = "";
             }
         }
+
 
         private ServiceClient ConnectClient()
         {

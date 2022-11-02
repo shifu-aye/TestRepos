@@ -5,16 +5,18 @@ using System.Net;
 using System.ServiceModel;
 using Test.Data.Context;
 using Test.Data.Tables;
+using System.ComponentModel;
 
 namespace Test
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени класса "Service" в коде и файле конфигурации.
+   
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
         public void Authentication1(string login, string password)
         {
-            Console.WriteLine($"{DateTime.Now}: Подключение к бд");
+            // Дальше ошибка
             using (ApplicationContext db = new ApplicationContext())
             {
                 Console.WriteLine($"{DateTime.Now}: Подключение к бд...");
@@ -22,11 +24,11 @@ namespace Test
                 currentUser = db.Users.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
                 if (!currentUser.IsAdmin)
                 {
-                    Console.WriteLine($"{DateTime.Now}: Клиет вошел, как пользователь!");
+                    Console.WriteLine($"{DateTime.Now}: Клиент вошел, как пользователь!");
                 }
                 else
                 {
-                    Console.WriteLine($"{DateTime.Now}: Клиет вошел, как пользователь!");
+                    Console.WriteLine($"{DateTime.Now}: Клиент вошел, как Админ!");
                 }
             }
         }

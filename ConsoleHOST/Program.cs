@@ -5,7 +5,6 @@ namespace ConsoleHOST
 {
     internal class Program
     {
-        //todo: Изменить на WCF Web Api
         static void Main(string[] args)
         {
             using (var host = new ServiceHost(typeof(Test.Service)))
@@ -14,7 +13,6 @@ namespace ConsoleHOST
                 Console.WriteLine("Хост запущен!");
                 
                 Console.ReadLine();
-                Console.ReadKey();
             }
         }
     }
