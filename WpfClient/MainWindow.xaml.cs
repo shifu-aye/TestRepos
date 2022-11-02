@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using WpfClient.ServiceReference1;
 
 namespace WpfClient
 {
-    public partial class MainWindow : Window, ServiceReference1.IServiceCallback
+    public partial class MainWindow : Window
     {
         bool _a = false;
         bool _enabled = false;
@@ -28,7 +27,7 @@ namespace WpfClient
         /// <param name="e"></param>
         private void mainWin_MouseMove(object sender, MouseEventArgs e)
         {
-            var client = new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
+            var client = new ServiceReference1.ServiceClient();
             if (_enabled == true)
             {
                 var windowPosition = Mouse.GetPosition(this);
@@ -110,7 +109,7 @@ namespace WpfClient
         /// <param name="e"></param>
         private void mainWin_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var client = new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
+            var client = new ServiceReference1.ServiceClient();
             var windowPosition = Mouse.GetPosition(this);
             var screenPosition = this.PointToScreen(windowPosition);
             string convertedCoord = Convert.ToString(screenPosition);
@@ -156,9 +155,5 @@ namespace WpfClient
             }
         }
         
-        public void MessageCallBack(string message)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

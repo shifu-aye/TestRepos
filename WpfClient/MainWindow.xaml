@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="478" Width="800" MouseMove="mainWin_MouseMove" MouseDown="mainWin_MouseDown">
+        Title="MainWindow" Height="478" Width="800" MouseMove="mainWin_MouseMove" MouseDown="mainWin_MouseDown" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="recordBtn" Content="Начать запись" Margin="0,0,680,394" Click="recordBtn_Click" IsEnabled="True"/>
         <TextBlock x:Name="counterTB"  Margin="120,0,624,407"/>

@@ -95,9 +95,6 @@
   <wsdl:message name="IService_SendWhatsApp_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendWhatsAppResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_MessageCallBack_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MessageCallBack" />
-  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Authentication1">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Authentication1" message="tns:IService_Authentication1_InputMessage" />
@@ -138,9 +135,6 @@
     <wsdl:operation name="SendWhatsApp">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendWhatsApp" message="tns:IService_SendWhatsApp_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SendWhatsAppResponse" message="tns:IService_SendWhatsApp_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="MessageCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageCallBack" message="tns:IService_MessageCallBack_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
@@ -232,12 +226,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="MessageCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IService/MessageCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

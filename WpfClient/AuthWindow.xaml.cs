@@ -1,14 +1,9 @@
-﻿using System;
-using System.Web.UI.WebControls;
-using System.Windows;
+﻿using System.Windows;
 using WpfClient.ServiceReference1;
 
 namespace WpfClient
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthWindow.xaml
-    /// </summary>
-    public partial class AuthWindow : Window, ServiceReference1.IServiceCallback
+    public partial class AuthWindow : Window
     {
         bool isConnected = false;
         private ServiceReference1.ServiceClient client;
@@ -16,7 +11,6 @@ namespace WpfClient
         {
             InitializeComponent();
             this.client = ConnectClient();
-            
         }
         
         private void authBtn_Click(object sender, RoutedEventArgs e)
@@ -27,7 +21,7 @@ namespace WpfClient
 
             if (login == "" || password == "")
             {
-                MessageBox.Show("Введите данные!");
+                MessageBox.Show("Введите данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -38,22 +32,16 @@ namespace WpfClient
                 mainWindow.Show();
                 Close();
             }
-
         }
 
         private ServiceClient ConnectClient()
         {
             if(!isConnected)
-                return new ServiceReference1.ServiceClient(new System.ServiceModel.InstanceContext(this));
+                return new ServiceReference1.ServiceClient();
             else
             {
                 return null;
             }
-        }
-
-        public void MessageCallBack(string message)
-        {
-            throw new NotImplementedException();
         }
     }
 }
